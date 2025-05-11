@@ -1,6 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from PIL import Image
+img = Image.open("thik h bhai.jpg").convert("L")  # Grayscale
+img = img.resize((64, 64))  # Resize for manageable computation
+real_image = np.array(img) / 255.0  # Normalize
+plt.imshow(real_image, cmap='gray')
+plt.title("Input Image")
+plt.axis('off')
+plt.show()
 image = np.array([[1, 2, 3, 4, 5], [4, 5, 6, 7, 8], [7, 8, 9, 1, 2], [3, 5, 2, 3, 4], [1, 6, 7, 5, 6]])
 kernel = np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]])
 kernel2 = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
