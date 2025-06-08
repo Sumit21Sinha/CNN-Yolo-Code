@@ -1,0 +1,1 @@
+Coding and implementing 2 layers of CNN as well as Yolo framework manually for a "Yolo-based Vehicle tracking system" Project. This code is important for the understanding of the mathematics and working behind the CNN, to be used later in chip design.
