@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 img = Image.open("thik h bhai.jpg").convert("L")  # Grayscale
-img = img.resize((64, 64))  # Resize for manageable computation
 real_image = np.array(img) / 255.0  # Normalize
 plt.imshow(real_image, cmap='gray')
 plt.title("Input Image")
@@ -15,7 +14,7 @@ kernel2 = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
 def padding(array, p):
     new_image = np.pad(array, pad_width=p, mode='constant', constant_values=0)
     return new_image
-padded_image = padding(image,1)
+padded_image = padding(real_image,1)
 print(padded_image)
 def filtering(old_array, new_array, array2):
     kernel_height, kernel_width=array2.shape
@@ -23,9 +22,9 @@ def filtering(old_array, new_array, array2):
     result=np.zeros((array_height, array_width))
     for x in range(array_height):
         for y in range(array_width):
-            result[x,y]=np.sum(new_array[y:y+kernel_height, x:x+kernel_width]*array2)
+            result[x,y] = np.sum(new_array[x:x+kernel_height, y:y+kernel_width]*array2)
     return result
-filtered_image = filtering(image, padded_image, kernel)
+filtered_image = filtering(real_image, padded_image, kernel)
 print(filtered_image)
 def relu(array):
     return np.maximum(0, array)
@@ -48,3 +47,7 @@ filtered_image2=filtering(pooled_matrix, padded_image2, kernel2)
 relu_output2=relu(filtered_image2)
 pooled_matrix2=max_pool(relu_output2,2,1)
 print(pooled_matrix2)
+plt.imshow(pooled_matrix2, cmap='gray')
+plt.title("Output Image After 2 CNN layers and Pooling")
+plt.axis('off')
+plt.show()
