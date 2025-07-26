@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-img = Image.open("thik h bhai.jpg").convert("L")  # Grayscale
+img = Image.open("man-standing-on-edge-of-cliff-thumbnail.jpg").convert("L")  # Grayscale
 real_image = np.array(img) / 255.0  # Normalize
 plt.imshow(real_image, cmap='gray')
 plt.title("Input Image")
